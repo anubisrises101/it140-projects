@@ -10,16 +10,40 @@
 # TODO 1: Identify the information the movement process needs.
 # Consider the player's current room and movement command.
 
+USE current_room state
+INPUT movement_command
+
 # TODO 2: Prompt for and receive the player's movement command.
+
+OUTPUT "Enter your move:"
+INPUT movement_command
 
 # TODO 3: Validate whether the requested movement is possible from the
 # current room. Show the decision clearly.
 
+IF movement_command is a valid direction from current_room
+
 # TODO 4: Describe what happens when the movement command is valid.
 # Include the room update and player output.
+
+IF movement_command is a valid direction from current_room
+    SET current_room TO movement_command room
 
 # TODO 5: Describe what happens when the movement command is invalid.
 # Include the output the player should receive.
 
+ELSE 
+    OUPUT "Can't move that direction!"
+
 # TODO 6: Show how movement fits into repeated gameplay.
 # The final game continues accepting commands until a required ending occurs.
+
+WHILE current_room is not forest
+	OUTPUT current_room, current_item
+	INPUT player_input
+	IF player_input is a valid movement command for current_room
+		process movement
+	ELIF player_input is a valid item in current_room
+		handle item retrieval
+	ELSE
+		OUTPUT "Please try again"
