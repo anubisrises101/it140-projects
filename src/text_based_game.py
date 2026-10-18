@@ -1,11 +1,17 @@
 """Project Two starter for the student's text-based adventure game."""
 
-# TODO: Add the full-name comment required by Project Two directions.
+# Aisling Skye McKenzie
 
 
 def show_instructions():
     """Display the game objective and available commands."""
-    # TODO: Print instructions that match your game and commands.
+    
+    print("Welcome to threshing day!")
+    print("You must collect all 6 items and face Codagh to win, or die trying.")
+    print("Available commands: go north, go south, go east, go west")
+    print("To add an item to inventory type 'get <item name>'")
+    print("To exit the game type 'exit'")
+
     pass
 
 
