@@ -33,21 +33,29 @@ def main():
         'Forest': {'south': 'Threshing grounds', 'item': 'Codagh'} #final boss
     }
 
+    # Sets starting states for the game
     current_room = 'Great Hall'
     inventory = []
     valid_directions = ('north', 'south', 'east', 'west')
 
     show_instructions()
-    
+
+    # Main gameplay loop 
     while current_room != 'Forest':
+
+        # Handles status and player input
         show_status(current_room, inventory, rooms)
         player_input = input("Please enter your move:")
+
+        # Handles basic player movement
         if player_input in rooms[current_room] and player_input in valid_directions:
             current_room = rooms[current_room][player_input]
         elif player_input not in rooms[current_room] and player_input in valid_directions:
             print("You can't go that way!")
         elif player_input.startswith("get "):
             requested_item = player_input.split(" ", 1)[1]
+
+            # Controls player inventory management
             if 'item' not in rooms[current_room]:
                 print("There is no item to pick up here.")
             elif requested_item == rooms[current_room]['item']:
@@ -56,12 +64,15 @@ def main():
                 del rooms[current_room]['item']
             else:
                 print("Invalid item. Please try again.")
+
+        # Handles player exit
         elif player_input == 'exit':
             print("Thanks for playing!")
             break
         else:
             print("Invalid command. Please try again.")
 
+    # Final game outcome
     if current_room == 'Forest' and len(inventory) == 6:
         print("Congratulations! You have collected all items and bonded with Codagh! You win!")
     elif current_room == 'Forest' and len(inventory) < 6:
